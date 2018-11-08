@@ -3,3 +3,9 @@
 </p>
 
 <%= @post.content %>
+
+<%= form_for (@comment) do |f| %>
+    <%= f.text_field :body%>
+    <%= f.hidden_field :post_id, value: @post.id %>
+    <%= f.submit "Comment" %>
+<% end %>

@@ -25,7 +25,9 @@ development:
   <<: *default
   database: facebook-clone_development
   host: localhost
-  port: 5433
+  port: 5432
+  username: postgres
+  password: myPassword
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -61,7 +63,9 @@ test:
   <<: *default
   database: facebook-clone_test
   host: localhost
-  port: 5433
+  port: 5432
+  username: postgres
+  password: myPassword
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -86,4 +90,8 @@ production:
   <<: *default
   database: facebook-clone_production
   username: facebook-clone
-  password: <%= ENV['FACEBOOK-CLONE_DATABASE_PASSWORD'] %>
+  password: <%= ENV['FACEBOOK-CLONE_DATABASE_PASSWORD']
+
+
+
+

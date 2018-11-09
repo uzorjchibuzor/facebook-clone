@@ -10,24 +10,43 @@
 <% if @user.posts.any? %>
   <% @user.posts.each do |post| %>
     <p> <%= post.content %> </p>
-    <% likeable_type = 'Post', item = post %>
-    <%= render './shared/like_and_unlike' %>
+  <% if post.likes.any? %>
+ <span> <%= pluralize( post.likes.count, 'like') %> </span>
+<% end %>
+     <% if current_user.likes.include?(Like.where(likeable_id: post.id).find_by(likeable_type: "Post")) %>
+  
+  <%= link_to 'unlike', likes_destroy_path(likeable_type: "Post", likeable_id: post.id), method: :delete %>
+
+ <% else %>
+
+<%= link_to 'like', likes_create_path(likeable_type: "Post", likeable_id: post.id), method: :post %>
+
+<% end %>
 
     <% if post.comments.any? %>
 
       <% post.comments.each do |comment| %>
         <p> <%= comment.body %> </p>
-        <% likeable_type = 'Comment', item = comment %>
-        <%= render './shared/like_and_unlike'%>
-      <% end %>
+        <% if comment.likes.any? %>
+ <span> <%= pluralize( comment.likes.count, 'like') %> </span>
+<% end %>
+         <% if current_user.likes.include?(Like.where(likeable_id: comment.id).find_by(likeable_type: "Comment")) %>
+  
+  <%= link_to 'unlike', likes_destroy_path(likeable_type: "Comment", likeable_id: comment.id), method: :delete %>
+
+ <% else %>
+
+<%= link_to 'like', likes_create_path(likeable_type: "Comment", likeable_id: comment.id), method: :post %>
+
+<% end %>      <% end %>
     <% end %>
 
-  <%= form_for (Comment.new) do |f| %>
-    <%= f.text_field :body%>
-    <%= f.hidden_field :post_id, value: post.id %>
-    <%= f.submit "Comment" %>
+    <%= form_for (Comment.new) do |f| %>
+      <%= f.text_field :body%>
+      <%= f.hidden_field :post_id, value: post.id %>
+      <%= f.submit "Comment" %>
+    <% end %>
   <% end %>
-<% end %>
 
 
 <% end %>

@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :logged_in_only
   def new
     @post = current_user.posts.build()
   end
@@ -26,6 +27,9 @@ class PostsController < ApplicationController
 
   def destroy
   end
+
+
+ 
 
   private 
 

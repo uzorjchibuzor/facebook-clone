@@ -1,10 +1,10 @@
 class CommentsController < ApplicationController
   def new
-    @comment = current_user.comment.build()
+    @comment = current_user.comments.build()
   end
 
   def create
-    @comment = current_user.comment.build(comment_params)
+    @comment = current_user.comments.build(comment_params)
     if @comment.save
       flash[:success] = "comment added successfully"
       redirect_back(fallback_location: current_user) 

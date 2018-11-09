@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # devise_for :users, controllers: {
   #       sessions: 'users/sessions'
   #     }
+
   get 'users/show'
   get 'posts/show'
   devise_for :users
@@ -12,4 +13,5 @@ Rails.application.routes.draw do
   root 'pages#home'
   resources :users
   resources :posts
+  resources :comments
 end

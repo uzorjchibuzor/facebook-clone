@@ -4,16 +4,25 @@
 <%= "#{@user.first_name} #{@user.last_name}" %>
 </p>
 
+<%= render './shared/post_new_form'  %>
+
 <h4>All Post (<%= @user.posts.count %>)</h4>
 <% if @user.posts.any? %>
   <% @user.posts.each do |post| %>
- <p> <%= post.content %> </p>
- <%= form_for (:comment) do |f| %>
-  <%= f.text_field :body%>
-  <%= f.hidden_field :post_id, value: post.id %>
-  <%= f.submit "Comment" %>
-<% end %>
+    <p> <%= post.content %> </p>
+    <% if post.comments.any? %>
+
+      <% post.comments.each do |comment| %>
+        <p> <%= comment.body %> </p>
+      <% end %>
+    <% end %>
+
+  <%= form_for (Comment.new) do |f| %>
+    <%= f.text_field :body%>
+    <%= f.hidden_field :post_id, value: post.id %>
+    <%= f.submit "Comment" %>
   <% end %>
+<% end %>
 
 
 <% end %>

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'likes/new'
+  post 'likes/create', to: 'likes#create'
+  get 'likes/destroy'
   get 'comments/new'
   get 'comments/create'
   # devise_for :users, controllers: {
@@ -14,4 +17,5 @@ Rails.application.routes.draw do
   resources :users
   resources :posts
   resources :comments
+  resources :likes
 end

@@ -10,10 +10,15 @@
 <% if @user.posts.any? %>
   <% @user.posts.each do |post| %>
     <p> <%= post.content %> </p>
+    <% likeable_type = 'Post', item = post %>
+    <%= render './shared/like_and_unlike' %>
+
     <% if post.comments.any? %>
 
       <% post.comments.each do |comment| %>
         <p> <%= comment.body %> </p>
+        <% likeable_type = 'Comment', item = comment %>
+        <%= render './shared/like_and_unlike'%>
       <% end %>
     <% end %>
 

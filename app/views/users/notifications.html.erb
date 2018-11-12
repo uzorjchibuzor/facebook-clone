@@ -1,0 +1,12 @@
+<% if @pending_friendships.any? %>
+  <% @pending_friendships.each do |pending| %>
+  <%= link_to "#{pending.user.first_name} #{pending.user.last_name}", pending.user %>  
+  <%= link_to "Confirm friendship", friendships_update_path(user_id:pending.user),method: :post%>
+
+
+  <% end %>
+  <% else %>
+
+
+  <p>There are no pending friendships</p>
+  <% end %>

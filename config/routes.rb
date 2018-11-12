@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   get 'friendships/create'
-  get 'friendships/update'
+  post 'friendships/update', to: 'friendships#update'
   get 'friendships/destroy'
   post 'friendships/create', to: 'friendships#create'
   get 'likes/new'
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   #     }
 
   get 'users/show'
+  get 'users/:id/notifications', to: 'users#notifications'
   get 'posts/show'
   devise_for :users
   get 'pages/home'

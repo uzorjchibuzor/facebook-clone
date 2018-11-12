@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 
   def notifications
     @pending_friendships = Friendship.where(friend_id:current_user.id).filter{|friendship| friendship.status == 'pending'}
+    
   end
 
 end

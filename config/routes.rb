@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get 'users/show'
   get '/notifications', to: 'users#notifications'
   get 'users/:id/notifications', to: 'users#notifications'
+  get '/all_friends', to: 'users#all_friends'
+  get 'users/:id/all_friends', to: 'users#all_friends'
   get 'posts/show'
   devise_for :users
   get 'pages/home'

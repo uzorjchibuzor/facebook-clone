@@ -1,0 +1,11 @@
+<h2>Friends</h2>
+
+<% if @active_friendships.any?  %>
+<% @active_friendships.each do |friend| %>
+   <p> <%= gravatar_for friend %></p>
+   <p> <%= link_to "#{friend.first_name} #{friend.last_name}", friend %></p>
+   <% end %>
+ <% else %>
+ <p>No friends available </p>
+ <% end %> 
+ 

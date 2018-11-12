@@ -1,0 +1,16 @@
+
+<h2>All Users</h2>
+<% @users.each do |user| %>
+   
+    <% if user == current_user %>
+    <p>
+    <strong><%= link_to user.first_name, user %></strong>
+     </p>
+     <% else %>
+     <p>
+      <strong><%= link_to user.first_name, user %></strong>
+      <%= link_to "Add Friend", friendships_create_path(friend_id:user),method: :post %>
+      </p>
+      <% end %>
+  
+   <% end %>

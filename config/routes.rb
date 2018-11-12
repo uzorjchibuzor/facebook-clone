@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'friendships/create'
+  get 'friendships/update'
+  get 'friendships/destroy'
+  post 'friendships/create', to: 'friendships#create'
   get 'likes/new'
   post 'likes/create', to: 'likes#create'
   get 'likes/destroy'
@@ -18,4 +22,5 @@ Rails.application.routes.draw do
   resources :posts
   resources :comments
   resources :likes
+  resources :friendships
 end

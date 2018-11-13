@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   default_scope -> { order(created_at: :desc) }
   has_many :comments
   has_many :likes, as: :likeable
+  
   mount_uploader :picture, PictureUploader
   
   validates :content, presence: true, length: {maximum: 250}

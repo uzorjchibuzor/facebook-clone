@@ -3,46 +3,52 @@
   <% @posts.each do |post| %>
     <p><%= gravatar_for post.user%> <%= "#{post.user.first_name} #{post.user.last_name}"  %></p>
     <div class = "well">
-    <p> <%= post.content %> </p>
-    <%= image_tag post.picture if post.picture? %>
-  <% if post.likes.any? %>
- <span> <%= pluralize( post.likes.count, 'like') %> </span>
-<% end %>
-     <% if current_user.likes.include?(Like.where(likeable_id: post.id).find_by(likeable_type: "Post")) %>
+      <p> <%= post.content %> </p>
+      <p> <%= image_tag post.picture.url if post.picture? %> </p>
+      <span class="timestamp">
+         <%= time_ago_in_words(post.created_at) %> ago.
+      </span>
+      <% if post.likes.any? %>
+        <span> <%= pluralize( post.likes.count, 'like') %> </span>
+      <% end %>
+      <% if current_user.likes.include?(Like.where(likeable_id: post.id).find_by(likeable_type: "Post")) %>
   
-  <%= link_to 'unlike', likes_destroy_path(likeable_type: "Post", likeable_id: post.id), method: :delete %>
+        <%= link_to 'unlike', likes_destroy_path(likeable_type: "Post", likeable_id: post.id), method: :delete %>
 
- <% else %>
+      <% else %>
 
-<%= link_to 'like', likes_create_path(likeable_type: "Post", likeable_id: post.id), method: :post %>
+        <%= link_to 'like', likes_create_path(likeable_type: "Post", likeable_id: post.id), method: :post %>
 
-<% end %>
+      <% end %>
 
-    <% if post.comments.any? %>
+      <% if post.comments.any? %>
 
-      <% post.comments.each do |comment| %>
-        <p> <%= comment.body %> </p>
-        <% if comment.likes.any? %>
- <span> <%= pluralize( comment.likes.count, 'like') %> </span>
-<% end %>
-         <% if current_user.likes.include?(Like.where(likeable_id: comment.id).find_by(likeable_type: "Comment")) %>
+        <% post.comments.each do |comment| %>
+          <p> <%= comment.body %> </p>
+          <span class="timestamp">
+        <%= time_ago_in_words(comment.created_at) %> ago.
+      </span>
+          <% if comment.likes.any? %>
+          <span> <%= pluralize( comment.likes.count, 'like') %> </span>
+          <% end %>
+          <% if current_user.likes.include?(Like.where(likeable_id: comment.id).find_by(likeable_type: "Comment")) %>
   
-  <%= link_to 'unlike', likes_destroy_path(likeable_type: "Comment", likeable_id: comment.id), method: :delete %>
+            <%= link_to 'unlike', likes_destroy_path(likeable_type: "Comment", likeable_id: comment.id), method: :delete %>
 
- <% else %>
+          <% else %>
 
-<%= link_to 'like', likes_create_path(likeable_type: "Comment", likeable_id: comment.id), method: :post %>
+            <%= link_to 'like', likes_create_path(likeable_type: "Comment", likeable_id: comment.id), method: :post %>
 
-<% end %>      <% end %>
-    <% end %>
+          <% end %> 
+        <% end %>
 
-    <%= form_for (Comment.new) do |f| %>
-      <%= f.text_field :body%>
-      <%= f.hidden_field :post_id, value: post.id %>
-      <%= f.submit "Comment" %>
-    <% end %>
+      <% end %>
+
+      <%= form_for (Comment.new) do |f| %>
+        <%= f.text_field :body%>
+        <%= f.hidden_field :post_id, value: post.id %>
+        <%= f.submit "Comment" %>
+      <% end %>
     </div>
   <% end %>
-
-
 <% end %>

@@ -21,9 +21,13 @@
   <% @user.posts.each do |post| %>
     <div class = "well">
     <p> <%= post.content %> </p>
+    <p> <%= image_tag post.picture.url if post.picture? %> </p>
+    <span class="timestamp">
+        <%= time_ago_in_words(post.created_at) %> ago.
+      </span>
   <% if post.likes.any? %>
- <span> <%= pluralize( post.likes.count, 'like') %> </span>
-<% end %>
+    <span> <%= pluralize( post.likes.count, 'like') %> </span>
+  <% end %>
      <% if current_user.likes.include?(Like.where(likeable_id: post.id).find_by(likeable_type: "Post")) %>
   
   <%= link_to 'unlike', likes_destroy_path(likeable_type: "Post", likeable_id: post.id), method: :delete %>
@@ -38,6 +42,9 @@
 
       <% post.comments.each do |comment| %>
         <p> <%= comment.body %> </p>
+        <span class="timestamp">
+        <%= time_ago_in_words(comment.created_at) %> ago.
+      </span>
         <% if comment.likes.any? %>
  <span> <%= pluralize( comment.likes.count, 'like') %> </span>
 <% end %>

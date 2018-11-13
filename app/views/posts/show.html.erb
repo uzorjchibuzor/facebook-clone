@@ -3,6 +3,10 @@
 </p>
 
 <%= @post.content %>
+<p> <%= image_tag @post.picture.url if post.picture? %> </p>
+<span class="timestamp">
+        Posted <%= time_ago_in_words(@post.created_at) %> ago.
+      </span>
 
 <%= form_for (@comment) do |f| %>
     <%= f.text_field :body%>

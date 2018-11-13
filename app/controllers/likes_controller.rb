@@ -10,12 +10,12 @@ class LikesController < ApplicationController
     else
     flash[:warning] = "Error occured"
     end
-    redirect_back(fallback_location: root_url)
+    redirect_back(fallback_location: authenticated_root_url)
   end
 
   def destroy
     current_user.likes.where(likeable_id: params[:likeable_id]).find_by(likeable_type: params[:likeable_type]).destroy
-    redirect_back(fallback_location: root_url)
+    redirect_back(fallback_location: authenticated_root_url)
   end
 
   private

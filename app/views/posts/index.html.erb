@@ -4,6 +4,7 @@
     <p><%= gravatar_for post.user%> <%= "#{post.user.first_name} #{post.user.last_name}"  %></p>
     <div class = "well">
     <p> <%= post.content %> </p>
+    <%= image_tag post.picture if post.picture? %>
   <% if post.likes.any? %>
  <span> <%= pluralize( post.likes.count, 'like') %> </span>
 <% end %>

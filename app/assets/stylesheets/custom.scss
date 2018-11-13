@@ -33,10 +33,17 @@ nav{
 }
 
 #logo{
-        font-size: 3rem;
-        font-weight: bold;
-        line-height: 61px;
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 36px;
 }
-.header-partion{
-    
+.search-form{
+    display: inline-block;
+    margin-top: 12px;
+    margin-bottom: 25px;
 }
+
+
+    ul li a {
+        color: #fff;
+    }

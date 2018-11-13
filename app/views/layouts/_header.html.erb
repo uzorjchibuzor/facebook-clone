@@ -16,9 +16,12 @@
       </button>
      
     </div>
+    
+
+    <div class="collapse navbar-collapse" id="myNavbar">
     <% if user_signed_in? %>
-    <div>
-    <%= form_for :user, url: {controller: :users, action: :search}, method: :post, html: {class: "form-inline", role:"form"} do |s| %>
+   
+    <%= form_for :user, url: {controller: :users, action: :search}, method: :post, html: {class: "form-inline search-form", role:"form"} do |s| %>
       <div class="form-group">
       <%= s.text_field :first_name, placeholder: 'Search By First Name',class:"form-control" %>
       </div>
@@ -26,15 +29,12 @@
       <%= s.submit 'Search', class:"btn btn-primary" %>
       <% end %>
 
-      </div>
      <% end %>
-
-    <div class="collapse navbar-collapse" id="myNavbar">
- 
   <ul class="nav navbar-nav navbar-right">
   
   <% if user_signed_in? %>
     <li><%= link_to "Users", users_path %></li>
+    <li><%= link_to "Friends", all_friends_path %></li>
     <li><%= link_to "Notifications", notifications_path %></li>
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">

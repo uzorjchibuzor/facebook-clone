@@ -4,6 +4,14 @@
     <div class="navbar-header">
     <% if user_signed_in? %>
     <%= link_to "FACEBOOK CLONE", authenticated_root_path,id: "logo", class: "navbar-brand light-color"  %>
+
+   <%= form_for :user, url: {controller: :users, action: :search}, method: :post do |s| %>
+    <%= s.text_field :first_name, placeholder: 'Search By First Name' %>
+    <%= s.submit 'Search' %>
+    <% end %>
+    
+
+
     <% else %>
     <%= link_to "FACEBOOK CLONE", unauthenticated_root_path,id: "logo", class: "navbar-brand light-color"  %>
       <% end %>

@@ -14,7 +14,13 @@ class UsersController < ApplicationController
   end
 
   def search
-    @searched_friend =  Friendship.find(search_params)
+    @users =  User.where(first_name: search_params[:first_name])
+    if @users.length > 0
+      flash[:success] = "User(s) found"
+    else
+      flash[:warning] = "Not found"
+    end
+
   end
 
 def all_friends
@@ -30,6 +36,12 @@ end
   def notifications
     @pending_friendships = Friendship.where(friend_id:current_user.id).filter{|friendship| friendship.status == 'pending'}
     
+  end
+
+  private
+
+  def search_params
+    params.require(:user).permit(:first_name)
   end
 
 end

@@ -3,7 +3,7 @@ class FriendshipsController < ApplicationController
     @friendship = current_user.friendships.create(friend_id: params[:friend_id])
     if @friendship.save
       flash[:notice] = "Friend request sent"
-      redirect_back(fallback_location: root_url)
+      redirect_back(fallback_location: authenticated_root_url)
     end
   end
 
@@ -12,10 +12,10 @@ class FriendshipsController < ApplicationController
     @friendship.status = 'active'
     if @friendship.save
       flash[:notice] = "Request Accepted"
-      redirect_back(fallback_location: root_url)
+      redirect_back(fallback_location: authenticated_root_url)
     else
       flash[:warning] = "Something Happened"
-      redirect_back(fallback_location: root_url)
+      redirect_back(fallback_location: authenticated_root_url)
     end
   end
 

@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   #       sessions: 'users/sessions'
   #     }
 
+  post '/search', to: 'users#search'
+  get '/search', to: 'posts#index'
+
   get 'users/show'
   get '/notifications', to: 'users#notifications'
   get 'users/:id/notifications', to: 'users#notifications'

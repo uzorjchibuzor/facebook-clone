@@ -20,8 +20,17 @@ Rails.application.routes.draw do
   get 'users/:id/all_friends', to: 'users#all_friends'
   get 'posts/show'
   devise_for :users
+  devise_scope :user do
+  authenticated :user do
+    root 'posts#index', as: :authenticated_root
+  end
+  unauthenticated :user do
+    root 'devise/registrations#new', as: :unauthenticated_root
+  end
+end
+ 
+
   get 'pages/home'
-  root 'pages#home'
   resources :users
   resources :posts
   resources :comments

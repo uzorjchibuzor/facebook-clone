@@ -2,8 +2,12 @@
     <nav class="navbar">
     <div class="container">
     <div class="navbar-header">
-    <%= link_to "FACEBOOK CLONE", root_path,id: "logo", class: "navbar-brand light-color"  %>
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+    <% if user_signed_in? %>
+    <%= link_to "FACEBOOK CLONE", authenticated_root_path,id: "logo", class: "navbar-brand light-color"  %>
+    <% else %>
+    <%= link_to "FACEBOOK CLONE", unauthenticated_root_path,id: "logo", class: "navbar-brand light-color"  %>
+      <% end %>
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span> 

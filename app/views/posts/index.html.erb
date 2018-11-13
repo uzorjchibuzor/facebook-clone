@@ -1,24 +1,7 @@
-<h1>Users#show</h1>
-
-<p> <%= gravatar_for @user %></p>
-<p> 
-<%= "#{@user.first_name} #{@user.last_name}" %>
-</p>
-<% if @user == current_user %>
-<% elsif current_user.friend_with?(@user) %>
-<%= link_to "Unfriend", friendships_destroy_path(friend_id:@user),method: :delete, data: {confirm: "Are you sure you want to unfriend this user?"} %>
-<% elsif current_user.pending_friendship_with?(@user) %>
-<%= link_to "Delete_Request", friendships_destroy_path(friend_id:@user),method: :delete, data: {confirm: "Are you sure you want to remove this request?"}%>
-<% else %>
-<%= link_to "Add Friend", friendships_create_path(friend_id:@user),method: :post  %>
-<% end %>
-
-<% if current_user.friend_with?(@user) || current_user == @user %>
 <%= render './shared/post_new_form'  %>
-<% end %>
-<h4>All Post (<%= @user.posts.count %>)</h4>
-<% if @user.posts.any? %>
-  <% @user.posts.each do |post| %>
+<% if @posts.any? %>
+  <% @posts.each do |post| %>
+    <p><%= gravatar_for post.user%> <%= "#{post.user.first_name} #{post.user.last_name}"  %></p>
     <div class = "well">
     <p> <%= post.content %> </p>
   <% if post.likes.any? %>

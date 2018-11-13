@@ -16,10 +16,10 @@ class UsersController < ApplicationController
   def search
     @users =  User.where(first_name: search_params[:first_name])
     if @users.length > 0
-      flash[:success] = "User(s) found"
+      flash.now[:success] = "User(s) found"
     else
-      flash[:warning] = "Not found"
-    end
+      flash.now[:warning] = "Not found"
+  end
 
   end
 

@@ -3,7 +3,11 @@
 
 $facebook-blue: #3B5998;
 $facebook-blue-dark:  #3C5A99;
+$background: #E9EAEE;
 
+body{
+    background-color: $background;
+}
 nav{
     background-color: $facebook-blue-dark;
     color: #fff;
@@ -46,4 +50,33 @@ nav{
 
     ul li a {
         color: #fff;
+    }
+    textarea{
+        width: 100%;
+        border:none;
+        font-size: 16px;
+        padding: 10px 10px;
+
+        &:focus{
+            outline: none;
+        }
+
+    }
+
+    button:focus{
+        outline: none;
+    }
+
+    input[type="file"] {
+        display: inline-block;
+        width: auto;
+    }
+
+    .btn-post{
+        margin-left: 145px;
+    }
+
+    .gravatar{
+        border-radius: 50%;
+        width: 40px;
     }

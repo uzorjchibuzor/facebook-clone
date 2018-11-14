@@ -25,6 +25,6 @@ class FriendshipsController < ApplicationController
     else 
       Friendship.where(friend_id: current_user.id).find_by(user_id: params[:friend_id]).destroy
     end
-    redirect_back(fallback_location: root_url)
+    redirect_back(fallback_location: authenticated_root_url)
   end
 end

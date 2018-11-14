@@ -1,7 +1,10 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+     
 <%= render './shared/post_new_form'  %>
 <% if @posts.any? %>
   <% @posts.each do |post| %>
-    <p><%= gravatar_for post.user%> <%= "#{post.user.first_name} #{post.user.last_name}"  %></p>
+    <p><%= gravatar_for post.user %> <%= link_to  "#{post.user.first_name} #{post.user.last_name}", post.user  %></p>
     <div class = "well">
       <p> <%= post.content %> </p>
       <p> <%= image_tag post.picture.url if post.picture? %> </p>
@@ -52,3 +55,6 @@
     </div>
   <% end %>
 <% end %>
+
+  </div>
+</div>

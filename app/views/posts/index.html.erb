@@ -4,8 +4,9 @@
 <%= render './shared/post_new_form'  %>
 <% if @posts.any? %>
   <% @posts.each do |post| %>
-    <p><%= gravatar_for post.user %> <%= link_to  "#{post.user.first_name} #{post.user.last_name}", post.user  %></p>
+    
     <div class = "well">
+    <p><%= gravatar_for post.user %> <%= link_to  "#{post.user.first_name} #{post.user.last_name}", post.user  %></p>
       <p> <%= post.content %> </p>
       <p> <%= image_tag post.picture.url if post.picture? %> </p>
       <span class="timestamp">
@@ -27,7 +28,8 @@
       <% if post.comments.any? %>
 
         <% post.comments.each do |comment| %>
-          <p> <%= comment.body %> </p>
+        <p><%= gravatar_for comment.user %>
+           <%= link_to  "#{comment.user.first_name} #{comment.user.last_name}", comment.user  %> <%= comment.body %> </p>
           <span class="timestamp">
         <%= time_ago_in_words(comment.created_at) %> ago.
       </span>
@@ -44,10 +46,11 @@
 
           <% end %> 
         <% end %>
-
+       
       <% end %>
-
-      <%= form_for (Comment.new) do |f| %>
+      <br />
+     <%= gravatar_for current_user %>
+      <%= form_for (Comment.new), html: {class: "comment-form-inline"} do |f| %>
         <%= f.text_field :body%>
         <%= f.hidden_field :post_id, value: post.id %>
         <%= f.submit "Comment" %>

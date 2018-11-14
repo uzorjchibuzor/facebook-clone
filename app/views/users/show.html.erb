@@ -1,11 +1,8 @@
-<p> <%= gravatar_for @user %></p>
-<p> 
-<%= "#{@user.first_name} #{@user.last_name}" %>
-</p>
-
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-
+<div class="col-md-3">
+<p> <%= gravatar_for @user %></p>
+<%= link_to "#{@user.first_name} #{@user.last_name}", @user %>
+</p>
 <% if @user == current_user %>
 <% elsif current_user.friend_with?(@user) %>
 <%= link_to "Unfriend", friendships_destroy_path(friend_id:@user),method: :delete, data: {confirm: "Are you sure you want to unfriend this user?"} %>
@@ -14,6 +11,8 @@
 <% else %>
 <%= link_to "Add Friend", friendships_create_path(friend_id:@user),method: :post  %>
 <% end %>
+</div>
+  <div class="col-md-6">
 
 <% if current_user.friend_with?(@user) || current_user == @user %>
 <%= render './shared/post_new_form'  %>
@@ -22,7 +21,8 @@
 <% if @user.posts.any? %>
   <% @user.posts.each do |post| %>
     <div class = "well">
-    <p> <%= post.content %> </p>
+    <p><%= gravatar_for post.user %> <%= link_to  "#{post.user.first_name} #{post.user.last_name}", post.user  %></p>
+      <p> <%= post.content %> </p>
     <p> <%= image_tag post.picture.url if post.picture? %> </p>
     <span class="timestamp">
         <%= time_ago_in_words(post.created_at) %> ago.
@@ -43,8 +43,9 @@
     <% if post.comments.any? %>
 
       <% post.comments.each do |comment| %>
-        <p> <%= comment.body %> </p>
-        <span class="timestamp">
+        <p><%= gravatar_for comment.user %>
+           <%= link_to  "#{comment.user.first_name} #{comment.user.last_name}", comment.user  %> <%= comment.body %> </p>
+          <span class="timestamp">
         <%= time_ago_in_words(comment.created_at) %> ago.
       </span>
         <% if comment.likes.any? %>
@@ -60,12 +61,13 @@
 
 <% end %>      <% end %>
     <% end %>
-
-    <%= form_for (Comment.new) do |f| %>
-      <%= f.text_field :body%>
-      <%= f.hidden_field :post_id, value: post.id %>
-      <%= f.submit "Comment" %>
-    <% end %>
+ <br />
+     <%= gravatar_for current_user %>
+      <%= form_for (Comment.new), html: {class: "comment-form-inline"} do |f| %>
+        <%= f.text_field :body%>
+        <%= f.hidden_field :post_id, value: post.id %>
+        <%= f.submit "Comment" %>
+      <% end %>
     </div>
   <% end %>
 

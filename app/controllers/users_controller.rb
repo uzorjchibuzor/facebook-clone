@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  include UsersHelper
 
   before_action :logged_in_only
+
   def index
     @users = User.all.paginate(page: params[:page], per_page: 20)
   end
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def search
-    @users =  User.where(first_name: search_params[:first_name])
+    @users =  User.where(first_name: search_params[:first_name]).or(User.where(last_name: search_params[:first_name])).or(User.where(email: search_params[:first_name]))
     if @users.length > 0
       flash.now[:success] = "User(s) found"
     else
@@ -35,7 +35,6 @@ end
 
   def notifications
     @pending_friendships = Friendship.where(friend_id:current_user.id).filter{|friendship| friendship.status == 'pending'}
-    
   end
 
   private

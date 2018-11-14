@@ -12,39 +12,39 @@
       <%= devise_error_messages! %>
       <div class="row">
         <div class="col-md-6">
-          <div class="form-group">
+          <div class="form-group form-group-lg">
             <%= f.text_field :first_name, autofocus: true, autocomplete: "", placeholder:"First Name", class: "form-control" %>
           </div>
         </div>
         <div class="col-md-6">
-          <div class="form-group">
+          <div class="form-group form-group-lg">
             <%= f.text_field :last_name, autofocus: true, autocomplete: "", placeholder:"Last Name", class: "form-control" %>
           </div>
         </div>
       </div>
-     <div class="form-group">
+     <div class="form-group form-group-lg">
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Email Address", class: "form-control"  %>
       </div>
     
-      <div class="form-group">
+      <div class="form-group form-group-lg">
         <%= f.label :date_of_birth %><br />
         <%= f.date_field :date_of_birth, autofocus: true, autocomplete: "", class: "form-control"  %>
       </div>
-      <div class="form-group">
+      <div class="form-group form-group-lg">
         <%= f.radio_button :gender, 'male', :checked => true %> 
         <%= label :gender, 'Male' %>
         <%= f.radio_button :gender, 'female'  %> 
         <%= label :gender, 'Female' %>
       </div>
     
-      <div class="form-group">
+      <div class="form-group form-group-lg">
         <% if @minimum_password_length %>
     
         <% end %><br />
         <%= f.password_field :password, autocomplete: "new-password", placeholder:"Password (6 characters minimum) ", class: "form-control"  %>
       </div>
     
-      <div class="form-group">
+      <div class="form-group form-group-lg">
         <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"Confirm Password", class: "form-control"  %>
       </div>
     

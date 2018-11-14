@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     
     unless user_signed_in?
       flash[:warning] = "You need to Sign in first"
-    redirect_to root_url 
+      redirect_to unauthenticated_root_url
 
     end
    end

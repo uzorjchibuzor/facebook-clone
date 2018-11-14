@@ -6,55 +6,93 @@
   <% @posts.each do |post| %>
     
     <div class = "well">
-    <p><%= gravatar_for post.user %> <%= link_to  "#{post.user.first_name} #{post.user.last_name}", post.user  %></p>
-      <p> <%= post.content %> </p>
-      <p> <%= image_tag post.picture.url if post.picture? %> </p>
-      <span class="timestamp">
-         <%= time_ago_in_words(post.created_at) %> ago.
-      </span>
-      <% if post.likes.any? %>
-        <span> <%= pluralize( post.likes.count, 'like') %> </span>
-      <% end %>
-      <% if current_user.likes.include?(Like.where(likeable_id: post.id).find_by(likeable_type: "Post")) %>
+        <div class="row">
+            <div class="col-md-2">
+
+                <%= gravatar_for post.user %>
+            </div>
+
+            <div class="col-md-10 comment-body">
+                <p><%= link_to  "#{post.user.first_name} #{post.user.last_name}", post.user  %></p>
+                <span class="timestamp">
+                    <%= time_ago_in_words(post.created_at) %> ago.
+                 </span>
+            </div>
+         </div>
+     
+        <div>
+
+            <p> <%= post.content %> </p>
+            <p> <%= image_tag post.picture.url if post.picture? %> </p>
+             <div class="post-padding">
+              <% if post.likes.any? %>
+             <span> <%= pluralize( post.likes.count, 'like') %> </span>
+           <% end %>
+        <% if current_user.likes.include?(Like.where(likeable_id: post.id).find_by(likeable_type: "Post")) %>
+    
+          <%= link_to 'unlike', likes_destroy_path(likeable_type: "Post", likeable_id: post.id), method: :delete %>
   
-        <%= link_to 'unlike', likes_destroy_path(likeable_type: "Post", likeable_id: post.id), method: :delete %>
+        <% else %>
+  
+          <%= link_to 'like', likes_create_path(likeable_type: "Post", likeable_id: post.id), method: :post %>
+  
+        <% end %>
+        </div>
+     
 
-      <% else %>
-
-        <%= link_to 'like', likes_create_path(likeable_type: "Post", likeable_id: post.id), method: :post %>
-
-      <% end %>
-
+    </div>
+    
       <% if post.comments.any? %>
 
         <% post.comments.each do |comment| %>
-        <p><%= gravatar_for comment.user %>
-           <%= link_to  "#{comment.user.first_name} #{comment.user.last_name}", comment.user  %> <%= comment.body %> </p>
-          <span class="timestamp">
-        <%= time_ago_in_words(comment.created_at) %> ago.
-      </span>
-          <% if comment.likes.any? %>
-          <span> <%= pluralize( comment.likes.count, 'like') %> </span>
-          <% end %>
-          <% if current_user.likes.include?(Like.where(likeable_id: comment.id).find_by(likeable_type: "Comment")) %>
-  
-            <%= link_to 'unlike', likes_destroy_path(likeable_type: "Comment", likeable_id: comment.id), method: :delete %>
-
-          <% else %>
-
-            <%= link_to 'like', likes_create_path(likeable_type: "Comment", likeable_id: comment.id), method: :post %>
-
-          <% end %> 
+           <div class="row comment-top-margin">
+             <div class="col-md-2">
+              <%= gravatar_for comment.user %>
+             </div>
+             <div class="col-md-10 comment-body">
+               
+              <p><%= link_to  "#{comment.user.first_name} #{comment.user.last_name}", comment.user  %> <%= comment.body %></p>
+              <span class="timestamp">
+                <%= time_ago_in_words(comment.created_at) %> ago.
+              </span>
+              <span class="likes">
+                  <% if comment.likes.any? %>
+                  <span> <%= pluralize( comment.likes.count, 'like') %> </span>
+                  <% end %>
+                  <% if current_user.likes.include?(Like.where(likeable_id: comment.id).find_by(likeable_type: "Comment")) %>
+          
+                    <%= link_to 'unlike', likes_destroy_path(likeable_type: "Comment", likeable_id: comment.id), method: :delete %>
+        
+                  <% else %>
+        
+                    <%= link_to 'like', likes_create_path(likeable_type: "Comment", likeable_id: comment.id), method: :post %>
+        
+                  <% end %>
+              </span>
+             </div>
+             
+           </div>
+        
         <% end %>
        
       <% end %>
       <br />
-     <%= gravatar_for current_user %>
-      <%= form_for (Comment.new), html: {class: "comment-form-inline"} do |f| %>
-        <%= f.text_field :body%>
-        <%= f.hidden_field :post_id, value: post.id %>
-        <%= f.submit "Comment" %>
-      <% end %>
+      <div class="row">
+        <div class="col-md-2">
+            <%= gravatar_for current_user %>
+        </div>
+        <div class="col-md-10 comment-body">
+            <%= form_for (Comment.new), html: {class: "comment-form-inline form-inline "} do |f| %>
+           
+            <%= f.text_field :body, class:"form-control input-lg",placeholder: "Write a comment..." %>
+            <%= f.hidden_field :post_id, value: post.id%>
+            
+            <%= f.submit "Comment", class:"btn-comment" %>
+          <% end %>
+        </div>
+      </div>
+    
+   
     </div>
   <% end %>
 <% end %>

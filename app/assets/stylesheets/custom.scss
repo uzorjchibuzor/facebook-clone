@@ -96,7 +96,29 @@ nav{
         padding-right: 2px;
     }
 }
+.comment-form-inline{
+    input{
+        width: 100% !important;
+    }
+}
+.comment-body{
+    margin-left: -36px;
+}
 
-.comment-form-inline {
-    display: inline-block;
+.timestamp{
+    color:blue;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.btn-comment{
+    display: none;
+}
+
+div.comment-top-margin{
+    margin-top: 10px;
+}
+
+.post-padding{
+margin-left:14px;
 }

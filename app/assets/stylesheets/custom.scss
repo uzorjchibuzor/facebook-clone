@@ -46,6 +46,10 @@ nav{
     margin-top: 12px;
     margin-bottom: 25px;
 }
+.nav > li > a:hover, .nav > li > a:focus {
+    color: #d6d2d2;
+    background: none !important;
+}
 
 
     ul li a {
@@ -80,3 +84,15 @@ nav{
         border-radius: 50%;
         width: 40px;
     }
+ a {
+     display: inline-block !important;
+ }
+
+.grava-link {
+    margin-top: -9px;
+    font-size: 15px;
+    &:first-child a {
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+}

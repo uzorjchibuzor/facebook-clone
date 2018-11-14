@@ -1,9 +1,11 @@
-<h1>Users#show</h1>
-
 <p> <%= gravatar_for @user %></p>
 <p> 
 <%= "#{@user.first_name} #{@user.last_name}" %>
 </p>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
 <% if @user == current_user %>
 <% elsif current_user.friend_with?(@user) %>
 <%= link_to "Unfriend", friendships_destroy_path(friend_id:@user),method: :delete, data: {confirm: "Are you sure you want to unfriend this user?"} %>
@@ -67,5 +69,7 @@
     </div>
   <% end %>
 
-
 <% end %>
+
+</div>
+</div>

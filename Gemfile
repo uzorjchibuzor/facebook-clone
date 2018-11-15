@@ -77,10 +77,3 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'will_paginate',           '3.1.6'
 gem 'bootstrap-will_paginate', '1.0.0'
 # gem "paperclip"
-
-gem 'carrierwave',             '1.2.2'
-gem 'mini_magick',             '4.7.0'
-
-group :production do
-  # gem 'fog', '1.42'
-end

@@ -19,7 +19,7 @@
       
 
           <p> <%= post.content %> </p>
-          <p> <%= image_tag post.picture.url if post.picture? %> </p>
+          <p> <%= image_tag post.image.url(:large) if post.image? %> </p>
           <div class="post-padding">
             <% if post.likes.any? %>
               <span> <%= pluralize( post.likes.count, 'like') %> </span>

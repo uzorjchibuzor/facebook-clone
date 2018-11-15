@@ -1,10 +1,13 @@
 <% if @pending_friendships.any? %>
+ <p>There are <%= pluralize(@pending_friendships.count, 'request')%> pending... </p>
   <% @pending_friendships.each do |pending| %>
     <p><%= gravatar_for pending.user%></p>
     <p>
-  <%= link_to "#{pending.user.first_name} #{pending.user.last_name}", pending.user %>  
-  <%= link_to "Confirm friendship", friendships_update_path(user_id:pending.user),method: :post%>
-  </p>
+  <%= link_to "#{pending.user.full_name}", pending.user %>  
+  <%= link_to "Confirm friendship", friendships_update_path(user_id:pending.user.id),method: :post%>
+
+  <%= link_to "Decline Friendship", friendships_destroy_path(friend_id:pending.user.id),method: :delete, data: {confirm: "Are you sure you want to decline this request?"} %>
+  </p> 
 
   <% end %>
   <% else %>

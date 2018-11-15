@@ -11,8 +11,8 @@ class CommentsController < ApplicationController
       flash[:success] = "comment added successfully"
       redirect_back(fallback_location: current_user) 
     else
-      flash.now[:danger] = "Sorry, comment could not be added"
-      render :new
+      flash[:danger] = "Sorry, comment could not be added"
+      redirect_back(fallback_location: current_user) 
     end
   end
 

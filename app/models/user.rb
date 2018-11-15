@@ -12,6 +12,10 @@ class User < ApplicationRecord
 
 
 
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
+
   def friend_with?(user)
     if self.friendships.find_by(friend_id:user.id)
 

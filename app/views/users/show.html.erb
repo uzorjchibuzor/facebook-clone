@@ -110,18 +110,17 @@
             <% end %>
     
           <% end %>
-         
-          <br />
+        
    
           <div class="row">
             <div class="col-md-2">
               <%= gravatar_for current_user %>
             </div>
  
-            <div class="col-md-10 comment-body">
+            <div class="col-md-10 comment-body ">
               <%= form_for (Comment.new), html: {class: "comment-form-inline form-inline "} do |f| %>
       
-                <%= f.text_field :body, class:"form-control input-lg",placeholder: "Write a comment..." %>
+                <%= f.text_field :body, class:"form-control input-lg comment-input",placeholder: "Write a comment..." %>
                 <%= f.hidden_field :post_id, value: post.id%>
        
                 <%= f.submit "Comment", class:"btn-comment" %>

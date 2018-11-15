@@ -103,6 +103,7 @@ nav{
 }
 .comment-body{
     margin-left: -36px;
+    
 }
 
 .timestamp{
@@ -117,6 +118,7 @@ nav{
 
 div.comment-top-margin{
     margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .post-padding{
@@ -133,4 +135,18 @@ div.user-profile {
     img {
         width: 50%;
     }
+}
+
+img{
+    width:100%;
+}
+
+.comment-input,.btn-post{
+    border-radius: 40px;
+    border-color: #ccd0d5;
+    background-color: #f2f3f5;
+}
+
+div.col-md-10.comment-body > p{
+    margin-bottom: 0;
 }

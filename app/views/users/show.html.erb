@@ -1,7 +1,8 @@
 <div class="row">
   <div class="col-md-3 user-profile">
     <p> 
-      <%= gravatar_for @user %> 
+      <%= profile_picture @user %> 
+
     </p>
     <%= link_to "#{@user.full_name}", @user %>
 

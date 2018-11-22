@@ -5,7 +5,7 @@
           <div class="row">
             <div class="col-md-2">
 
-              <%= gravatar_for post.user %>
+              <%= profile_picture post.user %>
             </div>
 
             <div class="col-md-10 comment-body">
@@ -43,7 +43,7 @@
             <% post.comments.each do |comment| %>
               <div class="row comment-top-margin">
                 <div class="col-md-2">
-                  <%= gravatar_for comment.user %>
+                  <%= profile_picture comment.user %>
                 </div>
       
                 <div class="col-md-10 comment-body">
@@ -78,7 +78,7 @@
        
           <div class="row">
             <div class="col-md-2">
-              <%= gravatar_for current_user %>
+              <%= profile_picture current_user %>
             </div>
             <div class="col-md-10 comment-body ">
               <%= form_for (Comment.new), html: {class: "comment-form-inline form-inline "} do |f| %>

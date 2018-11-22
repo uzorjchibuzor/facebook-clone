@@ -10,6 +10,10 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :friends, through: :friendships 
 
+  has_attached_file :avatar
+
+  validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png"]
+
 
 
   def full_name

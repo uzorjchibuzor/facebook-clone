@@ -1,7 +1,7 @@
 <% if @pending_friendships.any? %>
  <p>There are <%= pluralize(@pending_friendships.count, 'request')%> pending... </p>
   <% @pending_friendships.each do |pending| %>
-    <p><%= gravatar_for pending.user%></p>
+    <p><%= profile_picture pending.user%></p>
     <p>
   <%= link_to "#{pending.user.full_name}", pending.user %>  
   <%= link_to "Confirm friendship", friendships_update_path(user_id:pending.user.id),method: :post%>

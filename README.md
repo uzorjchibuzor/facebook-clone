@@ -4,10 +4,10 @@ This is a project to demonstrate the power of Ruby on Rails by using it to desig
 
 ## Authors
 
-[Chibuzor Efedigbue](cefedigbuej@gmail.com) 
+[Chibuzor Efedigbue](https://www.github.com/uzorjchibuzor) 
 
 ### and 
 
-[David Obele](obeledavid26@gmail.com)
+[David Obele](https://www.github.com/mrobele)
 
 

@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a project to demonstrate the power of Ruby on Rails by using it to design a Facebook clone.
 
-Things you may want to cover:
+## Authors
 
-* Ruby version
+[Chibuzor Efedigbue](https://www.github.com/uzorjchibuzor) 
 
-* System dependencies
+### and 
 
-* Configuration
+[David Obele](https://www.github.com/mrobele)
 
-* Database creation
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -8,33 +10,30 @@ class User < ApplicationRecord
   has_many :comments
   has_many :likes
   has_many :friendships
-  has_many :friends, through: :friendships 
+  has_many :friends, through: :friendships
 
   has_attached_file :avatar
 
-  validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png"]
-
-
+  validates_attachment_content_type :avatar, content_type: ['image/jpg', 'image/jpeg', 'image/png']
 
   def full_name
-    "#{self.first_name} #{self.last_name}"
+    "#{first_name} #{last_name}"
   end
 
   def friend_with?(user)
-    if self.friendships.find_by(friend_id:user.id)
+    if friendships.find_by(friend_id: user.id)
 
-     return self.friendships.find_by(friend_id:user.id).status == 'active'
-    elsif user.friendships.find_by(friend_id:self.id) 
-      return user.friendships.find_by(friend_id:self.id).status == 'active'
-    else 
-      return false
+      friendships.find_by(friend_id: user.id).status == 'active'
+    elsif user.friendships.find_by(friend_id: id)
+      user.friendships.find_by(friend_id: id).status == 'active'
+    else
+      false
     end
   end
 
   def pending_friendship_with?(user)
-    if self.friendships.find_by(friend_id:user.id)
-   return true if self.friendships.find_by(friend_id:user.id).status == 'pending'
+    if friendships.find_by(friend_id: user.id)
+      return true if friendships.find_by(friend_id: user.id).status == 'pending'
    end
   end
-
 end

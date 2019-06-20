@@ -1,5 +1,6 @@
-Rails.application.routes.draw do
+# frozen_string_literal: true
 
+Rails.application.routes.draw do
   get 'friendships/create'
   post 'friendships/update', to: 'friendships#update'
   get 'friendships/destroy'
@@ -24,14 +25,13 @@ Rails.application.routes.draw do
   get 'posts/show'
   devise_for :users
   devise_scope :user do
-  authenticated :user do
-    root 'posts#index', as: :authenticated_root
+    authenticated :user do
+      root 'posts#index', as: :authenticated_root
+    end
+    unauthenticated :user do
+      root 'devise/registrations#new', as: :unauthenticated_root
+    end
   end
-  unauthenticated :user do
-    root 'devise/registrations#new', as: :unauthenticated_root
-  end
-end
- 
 
   get 'pages/home'
   resources :users

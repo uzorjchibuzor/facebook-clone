@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
@@ -25,5 +27,4 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   #   get posts_destroy_url
   #   assert_response :success
   # end
-
 end

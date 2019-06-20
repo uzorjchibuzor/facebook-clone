@@ -1,0 +1,167 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+$facebook-blue: #3B5998;
+$facebook-blue-dark:  #3C5A99;
+$background: #E9EAEE;
+
+body{
+    background-color: $background;
+}
+nav{
+    background-color: $facebook-blue-dark;
+    color: #fff;
+    
+    .light-color{
+        color: #fff; 
+    }
+}
+
+.left-landing{
+
+    img{
+        width:100%;
+    }
+
+    h2{
+        font-weight: 700;
+        color: $facebook-blue;
+    }
+}
+
+
+.icon-bar{
+    background-color: white;
+
+}
+
+.right-landing{
+    h2{
+        font-weight: 700;
+        
+    }
+}
+
+#logo{
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 36px;
+}
+.search-form{
+    display: inline-block;
+    margin-top: 12px;
+    margin-bottom: 25px;
+}
+.nav > li > a:hover, .nav > li > a:focus {
+    color: #d6d2d2;
+    background: none !important;
+}
+
+
+    ul li a {
+        color: #fff;
+    }
+    textarea{
+        width: 100%;
+        border:none;
+        font-size: 16px;
+        padding: 10px 10px;
+
+        &:focus{
+            outline: none;
+        }
+
+    }
+
+    button:focus{
+        outline: none;
+    }
+
+    input[type="file"] {
+        display: inline-block;
+        width: auto;
+    }
+
+    .btn-post{
+        margin-left: 145px;
+    }
+
+    .gravatar{
+        border-radius: 50%;
+        width: 40px;
+    }
+ a {
+     display: inline-block !important;
+ }
+
+.grava-link {
+    margin-top: -9px;
+    font-size: 15px;
+    &:first-child a {
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+}
+.comment-form-inline{
+    input{
+        width: 100% !important;
+    }
+}
+// .comment-body{
+//     margin-left: -36px;
+    
+// }
+
+.col-md-2 {
+    width: 12%;
+}
+
+.post-content {
+    margin-top: 10px;
+}
+
+.timestamp{
+    color:blue;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.btn-comment{
+    display: none;
+}
+
+div.comment-top-margin{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.post-padding{
+margin-left:14px;
+}
+
+input.update-button {
+    width: 100%;
+    text-align: center;
+}
+
+div.user-profile {
+    text-align: center;
+    img {
+        width: 50%;
+    }
+}
+
+img{
+    width:100%;
+}
+
+.comment-input,.btn-post{
+    border-radius: 40px;
+    border-color: #ccd0d5;
+    background-color: #f2f3f5;
+}
+
+div.col-md-10.comment-body > p{
+    margin-bottom: 0;
+}

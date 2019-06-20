@@ -1,0 +1,33 @@
+
+<h2>Search Results</h2>
+
+<% @users.each do |user| %> 
+    <% if user == current_user %>
+    <p><%= profile_picture user%></p>
+    <p>
+    <strong><%= link_to "#{user.full_name}", user %></strong>
+     </p>
+     <% elsif current_user.friend_with?(user) %>
+     <p><%= profile_picture user%></p>
+     <p>
+      <strong><%= link_to "#{user.full_name}", user %></strong>
+      <%= link_to "Unfriend", friendships_destroy_path(friend_id:user),method: :delete, data: {confirm: "Are you sure you want to unfriend this user?"} %>
+      </p>
+      <% elsif current_user.pending_friendship_with?(user) %>
+      <p><%= profile_picture user%></p>
+     <p>
+     
+      <strong><%= link_to "#{user.full_name}", user %></strong>
+      Pending Request
+      <%= link_to "Delete_Request", friendships_destroy_path(friend_id:user),method: :delete, data: {confirm: "Are you sure you want to remove this request?"}%>
+      </p>
+      <% else %>
+      <p><%= profile_picture user%></p>
+      <p>
+      <strong><%= link_to "#{user.full_name}", user %></strong>
+      <%= link_to "Add Friend", friendships_create_path(friend_id:user),method: :post  %>
+      </p>
+      <% end %>
+   <% end %>
+
+  

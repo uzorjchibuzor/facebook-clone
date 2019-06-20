@@ -1,0 +1,20 @@
+
+<div class="well">
+<%= form_for (Post.new) do |f| %>
+
+<%= f.text_area :content, placeholder:"Create post" %>
+
+    <%= f.file_field :image %>
+<%= f.submit "Create Post",class:"btn btn-default btn-post" %>
+
+<% end %>
+</div>
+
+<script type="text/javascript">
+  $('#post_image').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 1) {
+      alert('Maximum file size is 1MB. Please choose a smaller file.');
+    }
+  });
+</script>

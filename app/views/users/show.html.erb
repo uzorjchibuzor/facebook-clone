@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-md-3 user-profile">
+    <p> 
+      <%= profile_picture @user %> 
+
+    </p>
+    <%= link_to "#{@user.full_name}", @user %>
+
+    <% if @user == current_user %>
+
+    <% elsif current_user.friend_with?(@user) %>
+      <%= link_to "Unfriend", friendships_destroy_path(friend_id:@user),method: :delete, data: {confirm: "Are you sure you want to unfriend this user?"} %>
+    <% elsif current_user.pending_friendship_with?(@user) %>
+      <%= link_to "Delete_Request", friendships_destroy_path(friend_id:@user),method: :delete, data: {confirm: "Are you sure you want to remove this request?"}%>
+    <% else %>
+      <%= link_to "Add Friend", friendships_create_path(friend_id:@user),method: :post  %>
+    <% end %>
+  </div>
+
+
+  <div class="col-md-6">
+
+    <% if current_user.friend_with?(@user) || current_user == @user %>
+      <%= render './shared/post_new_form'  %>
+    <% end %>
+    
+    <h4>
+      All Post (<%= @user.posts.count %>)
+    </h4>
+
+    <%= render './shared/feed' %>
+
+  </div>
+</div>

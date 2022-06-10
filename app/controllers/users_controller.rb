@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       flash.now[:success] = 'User(s) found'
     else
       flash.now[:warning] = 'Not found'
-  end
+    end
   end
 
   def all_friends
@@ -36,7 +36,9 @@ class UsersController < ApplicationController
   end
 
   def notifications
-    @pending_friendships = Friendship.where(friend_id: current_user.id).filter { |friendship| friendship.status == 'pending' }
+    @pending_friendships = Friendship.where(friend_id: current_user.id).filter do |friendship|
+      friendship.status == 'pending'
+    end
   end
 
   private

@@ -32,8 +32,6 @@ class User < ApplicationRecord
   end
 
   def pending_friendship_with?(user)
-    if friendships.find_by(friend_id: user.id)
-      return true if friendships.find_by(friend_id: user.id).status == 'pending'
-   end
+    true if friendships.find_by(friend_id: user.id) && (friendships.find_by(friend_id: user.id).status == 'pending')
   end
 end

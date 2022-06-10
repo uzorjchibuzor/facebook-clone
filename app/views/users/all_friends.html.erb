@@ -1,0 +1,11 @@
+<h2>Friends</h2>
+<% if @friends.any?  %>
+<%= will_paginate @friends %>
+<% @friends.each do |friend| %>
+   <p> <%= profile_picture friend %></p>
+   <p> <%= link_to "#{friend.full_name}", friend %></p>
+<% end %>
+ <% else %>
+ <p>No friends available </p>
+ <% end %> 
+ 
